@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h2>Add</h2>
+
+<form method="post">
+    <label for="name">Name</label>
+    <input name="username" type="text" id="name" value="@ViewBag.name"><br>
+
+    <label for="email">Email</label>
+    <input name="email" type="text" id="email" value="@ViewBag.email"><br>
+
+    <label for="pass">Password</label>
+    <input name="password" type="password" id="pass"><br>
+
+    <label for="verif">Verify Password</label>
+    <input name="verify" type="password" id="verif"><br>
+
+    <input type="submit" value="Login">
+
+</form>
