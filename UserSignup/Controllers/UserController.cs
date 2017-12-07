@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using UserSignup.Models;
+using UserSignup.ViewModel;
 
 namespace UserSignup.Controllers
 {
@@ -13,37 +14,33 @@ namespace UserSignup.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            User user = new User();
+
+            return View(user);
         }
 
         public IActionResult Add()
         {
-            ViewBag.name = name;
-            return View();
+            AddUserViewModel addUserViewModel = new AddUserViewModel(); 
+            return View(addUserViewModel);
         }
 
         [HttpPost]
-        public IActionResult Add(User user, string verify)
+        public IActionResult Add(AddUserViewModel addUserViewModel)
         {
+            User user = new User();
 
-            if (user == null)
+            user.username = addUserViewModel.name;
+            user.email = addUserViewModel.email;
+            user.password = addUserViewModel.password;
+
+            if (addUserViewModel.password != addUserViewModel.verify)
             {
-                name = "DIDNT WORK";
-                ViewBag.name = name;
+                return View(addUserViewModel);
             }
             else
             {
-                name = "WORKED";
-                ViewBag.name = name;
-                ViewBag.email = user.password;
-            }
-            if (user.password != verify)
-            {
-
-                return View();
-            }
-            else
-            {
+                user.SetUser(user);
                 return Redirect("/User");
             }
             

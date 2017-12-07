@@ -13,8 +13,18 @@ namespace UserSignup.Models
 
         public User()
         {
-
         }
 
+        static private User staticUser;
+
+        public void SetUser(User user)
+        {
+            staticUser = user;  
+        }
+
+        public User GetUser()
+        {
+            return staticUser;
+        }
     }
 }

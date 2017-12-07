@@ -1,1 +1,8 @@
-﻿<a href="User/Add">User Form</a>
+﻿@model UserSignup.Models.User
+
+@if (Model.GetUser() != null)
+{
+    <h2> Hello @Model.GetUser().username!</h2><br>
+}
+
+<a href="User/Add">User Form</a>
